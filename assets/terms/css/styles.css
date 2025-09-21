@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Global Reset and Base Styles
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #1A1A1A; /* Dark background, matching index */
+    color: #FFFFFF; /* White text */
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   CSS Custom Properties (Variables)
+   ========================================================================== */
+:root {
+    --primary-color: #00C4FF; /* Cyan, matching index */
+    --secondary-color: #FF6B6B; /* Coral, matching index */
+    --background-color: #1A1A1A; /* Dark background */
+    --text-color: #FFFFFF; /* White text */
+    --accent-color: #4B4B4B; /* Gray for secondary backgrounds */
+    --shadow-color: rgba(0, 196, 255, 0.3); /* Cyan shadow */
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+h1, h2, h3 {
+    font-weight: 700;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin: 2rem 0 1rem;
+}
+
+h3 {
+    font-size: clamp(1.125rem, 3vw, 1.5rem);
+    margin-bottom: 0.75rem;
+}
+
+p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+li {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    margin-bottom: 0.5rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    z-index: 1000;
+    transition: top 0.3s ease;
+    width: auto;
+    text-decoration: none;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.skip-link:not(:focus) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.cta-button {
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    display: block;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    touch-action: manipulation;
+    min-width: 120px;
+    margin: 1.5rem auto 0;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px var(--shadow-color);
+    background: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* ==========================================================================
+   Terms Section
+   ========================================================================== */
+.terms {
+    padding: clamp(2rem, 5vw, 3rem) 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--background-color);
+    min-height: 80vh;
+}
+
+.terms-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    background: var(--accent-color);
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid var(--primary-color);
+}
+
+footer p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media (min-width: 769px) {
+    .terms {
+        padding: clamp(3rem, 6vw, 4rem) 1.5rem;
+    }
+
+    .terms-container {
+        padding: 0 2rem;
+    }
+
+    .cta-button {
+        padding: 0.75rem 1.5rem;
+        font-size: clamp(0.875rem, 2vw, 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .terms {
+        padding: clamp(1.5rem, 4vw, 2rem) 1rem;
+    }
+
+    .terms-container {
+        padding: 0 0.75rem;
+    }
+
+    .cta-button {
+        padding: 0.625rem 1.25rem;
+        font-size: clamp(0.875rem, 2vw, 0.9375rem);
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+    }
+
+    h2 {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+    }
+
+    .terms {
+        padding: clamp(1.25rem, 3vw, 1.5rem) 0.75rem;
+    }
+
+    .terms-container {
+        padding: 0 0.5rem;
+    }
+
+    ul {
+        padding-left: 1rem;
+    }
+
+    .cta-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}
