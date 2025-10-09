@@ -1,6 +1,3 @@
-/* ==========================================================================
-   Document Ready
-   ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
      Scroll Animations
@@ -11,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animated');
-          observer.unobserve(entry.target); // Stop observing once animated
+          observer.unobserve(entry.target);
         }
       });
     },
@@ -26,12 +23,53 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('loaded');
 
   /* ==========================================================================
+     Navigation Toggle
+     ========================================================================== */
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  navToggle.addEventListener('click', () => {
+    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', !isExpanded);
+    navLinks.classList.toggle('open');
+    // Trap focus in mobile menu when open
+    if (!isExpanded) {
+      navLinks.querySelector('a').focus();
+    }
+  });
+
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.focus();
+    }
+  });
+
+  /* ==========================================================================
      Contact Form Submission
      ========================================================================== */
   const contactForm = document.getElementById('contact-form');
-  const submitButton = contactForm.querySelector('button');
-  const buttonText = submitButton.querySelector('span');
-  const spinner = submitButton.querySelector('.fa-spinner');
+  const submitButton = contactForm?.querySelector('button');
+  const buttonText = submitButton?.querySelector('span');
+  const spinner = submitButton?.querySelector('.fa-spinner');
 
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -71,108 +109,89 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-/* ==========================================================================
-   Portfolio Modals
-   ========================================================================== */
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modal-img');
-const modalTitle = document.getElementById('modal-title');
-const modalDescription = document.getElementById('modal-description');
-const modalLink = document.getElementById('modal-link');
-const closeModal = document.querySelector('.close-modal');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
+  /* ==========================================================================
+     Portfolio Modals
+     ========================================================================== */
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+  const modalLink = document.getElementById('modal-link');
+  const closeModal = document.querySelector('.close-modal');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-const projectData = {
+  const projectData = {
     eastcoastpets: {
-        img: 'assets/img/branding/ecp-logo.webp',
-        title: 'East Coast Pets',
-        description: 'A vibrant, SEO-optimized website for a local pet care business, enhancing client engagement.',
-        link: 'https://eastcoastpets.ca',
+      img: 'assets/img/branding/ecp-logo.webp',
+      title: 'East Coast Pets',
+      description: 'A vibrant, SEO-optimized website for a local pet care business, enhancing client engagement.',
+      link: 'https://eastcoastpets.ca',
     },
     riffs: {
-        img: 'assets/img/branding/riffs.webp',
-        title: 'Riffs',
-        description: 'A mobile-optimized, user-friendly website for Riffs, built for maximum SEO impact.',
-        link: 'https://riffs.ca',
+      img: 'assets/img/branding/riffs.webp',
+      title: 'Riffs',
+      description: 'A mobile-optimized, user-friendly website for Riffs, built for maximum SEO impact.',
+      link: 'https://riffs.ca',
     },
-};
+  };
 
-portfolioItems.forEach((item) => {
+  portfolioItems.forEach((item) => {
     item.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default to ensure clean modal trigger
-        const project = item.dataset.project;
-        const data = projectData[project];
-        if (data) {
-            modalImg.src = data.img;
-            modalImg.alt = `${data.title} Website`;
-            modalTitle.textContent = data.title;
-            modalDescription.textContent = data.description;
-            modalLink.href = data.link;
-            modalLink.setAttribute('aria-label', `Visit ${data.title} Website`);
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
-            modalLink.focus(); // Improve accessibility
-        }
-    });
-});
-
-modalLink.addEventListener('click', (e) => {
-    // Ensure the link navigates without interference
-    const url = modalLink.getAttribute('href');
-    if (url && url !== '#') {
-        window.location.href = url; // Navigate to the URL in the same tab
-    }
-});
-
-closeModal.addEventListener('click', () => {
-    modal.classList.remove('show');
-    setTimeout(() => modal.style.display = 'none', 300);
-});
-
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.classList.remove('show');
-        setTimeout(() => modal.style.display = 'none', 300);
-    }
-});
-
-// Keyboard accessibility for modal
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'flex') {
-        modal.classList.remove('show');
-        setTimeout(() => modal.style.display = 'none', 300);
-    }
-});
-
-  /* ==========================================================================
-     Smooth Scrolling for Navigation Links
-     ========================================================================== */
-  const navLinks = document.querySelectorAll('a[href^="#"]');
-  navLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
       e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' });
+      const project = item.dataset.project;
+      const data = projectData[project];
+      if (data) {
+        modalImg.src = data.img;
+        modalImg.alt = `${data.title} Website`;
+        modalTitle.textContent = data.title;
+        modalDescription.textContent = data.description;
+        modalLink.href = data.link;
+        modalLink.setAttribute('aria-label', `Visit ${data.title} Website`);
+        modal.style.display = 'flex';
+        setTimeout(() => modal.classList.add('show'), 10);
+        modalLink.focus();
       }
     });
   });
 
+  modalLink.addEventListener('click', (e) => {
+    const url = modalLink.getAttribute('href');
+    if (url && url !== '#') {
+      window.location.href = url;
+    }
+  });
+
+  closeModal.addEventListener('click', () => {
+    modal.classList.remove('show');
+    setTimeout(() => modal.style.display = 'none', 300);
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+      setTimeout(() => modal.style.display = 'none', 300);
+    }
+  });
+
+  // Keyboard accessibility for modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      modal.classList.remove('show');
+      setTimeout(() => modal.style.display = 'none', 300);
+    }
+  });
+
   /* ==========================================================================
-     Footer Navigation (Optional Enhancement)
+     Smooth Scrolling for Navigation Links
      ========================================================================== */
-  const footerNavLinks = document.querySelectorAll('.footer-nav .nav-links a');
-  footerNavLinks.forEach((link) => {
+  const navLinksSmooth = document.querySelectorAll('a[href^="#"]');
+  navLinksSmooth.forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('href').substring(1);
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: 'smooth' });
-        // Update active state
-        footerNavLinks.forEach((navLink) => navLink.removeAttribute('aria-current'));
-        link.setAttribute('aria-current', 'page');
       }
     });
   });

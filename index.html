@@ -29,9 +29,10 @@
   <meta name="twitter:image" content="https://sages.services/assets/img/branding/sages-services-og-image.jpg">
   <meta name="twitter:image:alt" content="Sages Services logo and tech solutions">
   <meta name="twitter:creator" content="@SagesServices">
+  <link rel="canonical" href="https://sages.services/">
   <title>Sages Services | Remote Web & Tech Solutions for Your Success</title>
   <link rel="stylesheet" href="assets/css/styles.css" media="all">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.media='all'" onerror="this.href='assets/css/font-awesome-fallback.css'" />
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
@@ -49,71 +50,86 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" as="style">
   <!-- Structured Data (Schema.org) -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Sages Services",
-      "description": "Sages Services offers website development, tech troubleshooting, system maintenance, and IT consulting. Fully remote services worldwide and in-person support in Newfoundland and Labrador, Canada.",
-      "url": "https://sages.services",
-      "logo": "https://sages.services/assets/img/branding/services-tran.webp",
-      "image": "https://sages.services/assets/img/branding/services-tran.webp",
-      "email": "sages.services@outlook.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressRegion": "NL",
-        "addressCountry": "CA"
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Sages Services",
+  "description": "Sages Services offers website development, tech troubleshooting, system maintenance, and IT consulting. Fully remote services worldwide and in-person support in Newfoundland and Labrador, Canada.",
+  "url": "https://sages.services",
+  "logo": "https://sages.services/assets/img/branding/services-tran.webp",
+  "image": "https://sages.services/assets/img/branding/services-tran.webp",
+  "email": "sages.services@outlook.com",
+  "telephone": "+1-709-123-4567",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "NL",
+    "addressCountry": "CA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 48.4284,
+    "longitude": -53.6697
+  },
+  "sameAs": [
+    "https://twitter.com/SagesServices"
+  ],
+  "offers": {
+    "@type": "OfferCatalog",
+    "name": "Tech and Web Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Website Development",
+          "description": "Custom websites and SEO services for businesses worldwide, with in-person support in Newfoundland and Labrador."
+        }
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 48.4284,
-        "longitude": -53.6697
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Tech Troubleshooting",
+          "description": "Fast, reliable solutions for hardware, software, and network issues, available remotely or in-person in Newfoundland and Labrador."
+        }
       },
-      "sameAs": [
-        "https://twitter.com/SagesServices"
-      ],
-      "offers": {
-        "@type": "OfferCatalog",
-        "name": "Tech and Web Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Website Development",
-              "description": "Custom websites and SEO services for businesses worldwide, with in-person support in Newfoundland and Labrador."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Tech Troubleshooting",
-              "description": "Fast, reliable solutions for hardware, software, and network issues, available remotely or in-person in Newfoundland and Labrador."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "System Maintenance",
-              "description": "Comprehensive IT system maintenance for optimal performance, offered remotely or in-person in Newfoundland and Labrador."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "IT Consulting",
-              "description": "Strategic technology consulting to drive innovation, available remotely or in-person in Newfoundland and Labrador."
-            }
-          }
-        ]
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "System Maintenance",
+          "description": "Comprehensive IT system maintenance for optimal performance, offered remotely or in-person in Newfoundland and Labrador."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "IT Consulting",
+          "description": "Strategic technology consulting to drive innovation, available remotely or in-person in Newfoundland and Labrador."
+        }
       }
-    }
+    ]
+  }
+}
   </script>
 </head>
 <body>
-
+  <header>
+    <nav class="main-nav">
+      <a href="/" class="logo">Sages Services</a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <main id="main-content">
     <section id="home" class="hero">
       <div class="hero-content animate-on-scroll">
@@ -202,7 +218,8 @@
   <footer>
     <p>© 2025 Sages Services. All rights reserved.</p>
     <div class="powered-by">
-      <a href="/assets/terms/terms.html">Terms Of Service</a>
+      <a href="terms.html">Terms of Service</a> | 
+      <a href="privacy.html">Privacy Policy</a>
     </div>
   </footer>
 
@@ -218,6 +235,4 @@
 
   <script src="assets/js/script.js"></script>
 </body>
-
 </html>
-
