@@ -1,6 +1,6 @@
 # 🌟 Sages Services Website 🌟
 
-![Sages Services Banner](assets/img/branding/sages-services-og-image.jpg)
+![Sages Services Banner](assets/img/branding/establishment.jpg)
 
 Welcome to the **Sages Services** website repository—a sleek, modern, and powerful platform designed to showcase top-tier **website development**, **tech troubleshooting**, **system maintenance**, and **IT consulting** services. Whether you're a business in Newfoundland and Labrador or anywhere across the globe, we deliver **customized tech solutions** to skyrocket your success! 🚀
 
@@ -45,8 +45,6 @@ Transform your digital journey with **Sages Services**! Whether you need a stunn
 
 - **Website**: [sages.services](https://sages.services)
 - **Email**: sages.services@outlook.com
-- **Twitter**: [@SagesServices](https://twitter.com/SagesServices)
-- **Phone**: +1-709-123-4567
 
 ---
 
