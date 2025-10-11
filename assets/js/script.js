@@ -1,5 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
+     Utility Functions
+     ========================================================================== */
+  const trapFocus = (container, firstFocusable, lastFocusable) => {
+    const handleFocus = (e) => {
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable.focus();
+        } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable.focus();
+        }
+      }
+    };
+    container.addEventListener('keydown', handleFocus);
+    return () => container.removeEventListener('keydown', handleFocus);
+  };
+
+  /* ==========================================================================
      Scroll Animations
      ========================================================================== */
   const animateElements = document.querySelectorAll('.animate-on-scroll');
@@ -12,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.3, rootMargin: '0px 0px -50px 0px' }
   );
 
   animateElements.forEach((el) => observer.observe(el));
@@ -20,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
      Page Load Animation
      ========================================================================== */
-  document.body.classList.add('loaded');
+  setTimeout(() => document.body.classList.add('loaded'), 100);
 
   /* ==========================================================================
      Navigation Toggle
@@ -28,40 +47,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
 
-  navToggle.addEventListener('click', () => {
-    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', !isExpanded);
-    navLinks.classList.toggle('open');
-    // Trap focus in mobile menu when open
-    if (!isExpanded) {
-      navLinks.querySelector('a').focus();
-    }
-  });
+  if (navToggle && navLinks) {
+    const navLinksList = navLinks.querySelectorAll('a');
+    const firstNavLink = navLinksList[0];
+    const lastNavLink = navLinksList[navLinksList.length - 1];
 
-  // Close menu when a link is clicked
-  navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.addEventListener('click', () => {
+      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !isExpanded);
+      navLinks.classList.toggle('open');
+      if (!isExpanded && firstNavLink) {
+        firstNavLink.focus();
+      }
     });
-  });
 
-  // Close menu on outside click
-  document.addEventListener('click', (e) => {
-    if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
+    navLinksList.forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.focus();
+      });
+    });
 
-  // Close menu on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.focus();
-    }
-  });
+    document.addEventListener('click', (e) => {
+      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.focus();
+      }
+    });
+
+    const removeFocusTrap = trapFocus(navLinks, firstNavLink, lastNavLink);
+    navToggle.addEventListener('click', () => {
+      if (!navLinks.classList.contains('open')) {
+        removeFocusTrap();
+      }
+    });
+  }
 
   /* ==========================================================================
      Contact Form Submission
@@ -71,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const buttonText = submitButton?.querySelector('span');
   const spinner = submitButton?.querySelector('.fa-spinner');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+  if (contactForm && submitButton && buttonText && spinner) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent default to handle submission manually
       buttonText.style.display = 'none';
       spinner.style.display = 'inline-block';
       submitButton.disabled = true;
@@ -83,25 +112,58 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = contactForm.querySelector('input[name="email"]').value.trim();
         const message = contactForm.querySelector('textarea[name="message"]').value.trim();
 
+        // Validate inputs
         if (!name || !email || !message) {
-          throw new Error('All fields are required.');
+          throw new Error('Please fill in all required fields.');
         }
 
-        const subject = encodeURIComponent('Custom Solution Inquiry');
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
-        const mailtoLink = `mailto:sages.services@outlook.com?subject=${subject}&body=${body}`;
+        // Enhanced email validation
+        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+        if (!emailRegex.test(email)) {
+          throw new Error('Please enter a valid email address.');
+        }
 
-        window.location.href = mailtoLink;
+        // Log submission attempt (NDT timezone)
+        console.log(`Form submission attempt at ${new Date().toLocaleString('en-CA', { timeZone: 'America/St_Johns' })}`);
 
-        setTimeout(() => {
-          contactForm.reset();
-          alert('Your inquiry has been sent! Please check your email client to complete the submission.');
-          buttonText.style.display = 'inline-block';
-          spinner.style.display = 'none';
-          submitButton.disabled = false;
-        }, 1000);
+        // Submit to Web3Forms
+        const formData = new FormData(contactForm);
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
+
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+          throw new Error('Failed to send form. Please try again.');
+        }
+
+        // Reset form and show success message
+        contactForm.reset();
+        const successMessage = document.createElement('p');
+        successMessage.className = 'form-success';
+        successMessage.textContent = 'Form sent successfully';
+        successMessage.setAttribute('role', 'alert');
+        contactForm.insertAdjacentElement('afterend', successMessage);
+        successMessage.focus();
+        setTimeout(() => successMessage.remove(), 5000);
+
+        buttonText.style.display = 'inline-block';
+        spinner.style.display = 'none';
+        submitButton.disabled = false;
+
       } catch (error) {
-        alert(`Error: ${error.message}`);
+        console.error(`Form submission error at ${new Date().toLocaleString('en-CA', { timeZone: 'America/St_Johns' })}:`, error);
+        const errorMessage = document.createElement('p');
+        errorMessage.className = 'form-error';
+        errorMessage.textContent = 'Error: Failed to send form. Please try again or email sages.services@outlook.com.';
+        errorMessage.setAttribute('role', 'alert');
+        contactForm.insertAdjacentElement('afterend', errorMessage);
+        errorMessage.focus();
+        setTimeout(() => errorMessage.remove(), 5000);
         buttonText.style.display = 'inline-block';
         spinner.style.display = 'none';
         submitButton.disabled = false;
@@ -135,51 +197,57 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   };
 
-  portfolioItems.forEach((item) => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      const project = item.dataset.project;
-      const data = projectData[project];
-      if (data) {
-        modalImg.src = data.img;
-        modalImg.alt = `${data.title} Website`;
-        modalTitle.textContent = data.title;
-        modalDescription.textContent = data.description;
-        modalLink.href = data.link;
-        modalLink.setAttribute('aria-label', `Visit ${data.title} Website`);
-        modal.style.display = 'flex';
-        setTimeout(() => modal.classList.add('show'), 10);
-        modalLink.focus();
+  if (modal && modalImg && modalTitle && modalDescription && modalLink && closeModal) {
+    portfolioItems.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const project = item.dataset.project;
+        const data = projectData[project];
+        if (data) {
+          modalImg.src = data.img;
+          modalImg.alt = `${data.title} Website`;
+          modalTitle.textContent = data.title;
+          modalDescription.textContent = data.description;
+          modalLink.href = data.link || '#';
+          modalLink.setAttribute('aria-label', `Visit ${data.title} Website`);
+          modal.classList.add('show');
+          modal.focus();
+          const focusableElements = modal.querySelectorAll('a[href], button, [tabindex="0"]');
+          const firstFocusable = focusableElements[0];
+          const lastFocusable = focusableElements[focusableElements.length - 1];
+          const removeModalFocusTrap = trapFocus(modal, firstFocusable, lastFocusable);
+          closeModal.addEventListener('click', removeModalFocusTrap, { once: true });
+        }
+      });
+    });
+
+    modalLink.addEventListener('click', (e) => {
+      const url = modalLink.getAttribute('href');
+      if (url && url !== '#') {
+        window.open(url, '_blank');
       }
     });
-  });
 
-  modalLink.addEventListener('click', (e) => {
-    const url = modalLink.getAttribute('href');
-    if (url && url !== '#') {
-      window.location.href = url;
-    }
-  });
-
-  closeModal.addEventListener('click', () => {
-    modal.classList.remove('show');
-    setTimeout(() => modal.style.display = 'none', 300);
-  });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
+    closeModal.addEventListener('click', () => {
       modal.classList.remove('show');
-      setTimeout(() => modal.style.display = 'none', 300);
-    }
-  });
+      setTimeout(() => modal.classList.remove('show'), 300);
+    });
 
-  // Keyboard accessibility for modal
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'flex') {
-      modal.classList.remove('show');
-      setTimeout(() => modal.style.display = 'none', 300);
-    }
-  });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+        setTimeout(() => modal.classList.remove('show'), 300);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) {
+        modal.classList.remove('show');
+        setTimeout(() => modal.classList.remove('show'), 300);
+        document.querySelector(`[data-project="${modalImg.alt.split(' ')[0].toLowerCase()}"]`)?.focus();
+      }
+    });
+  }
 
   /* ==========================================================================
      Smooth Scrolling for Navigation Links
@@ -191,7 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetId = link.getAttribute('href').substring(1);
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' });
+        const headerOffset = document.querySelector('header').offsetHeight;
+        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - headerOffset,
+          behavior: 'smooth',
+        });
       }
     });
   });
