@@ -1,5 +1,3 @@
-![Sages Services Banner](assets/img/branding/establishment.webp)
-
 Welcome to the **Sages Services** website repository—a sleek, modern, and powerful platform designed to showcase top-tier **website development**, **tech troubleshooting**, **system maintenance**, and **IT consulting** services. Whether you're a business in Newfoundland and Labrador or anywhere across the globe, we deliver **customized tech solutions** to skyrocket your success! 🚀
 
 ---
