@@ -1,7 +1,3 @@
-// ==========================================================================
-//   MAIN JS — Works with index.html, privacy.html, terms.html, 404.html
-// ==========================================================================
-
 document.addEventListener('DOMContentLoaded', function () {
   // Page load fade-in
   document.body.classList.add('loaded');
@@ -27,10 +23,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Portfolio modal
-  const modal = document.getElementById('portfolio-modal');
+  const modal = document.getElementById('modal');
   const modalImg = document.getElementById('modal-img');
   const modalTitle = document.getElementById('modal-title');
-  const modalDesc = document.getElementById('modal-desc');
+  const modalDesc = document.getElementById('modal-description');
+  const modalLink = document.getElementById('modal-link');
   const closeModal = document.querySelector('.close-modal');
 
   document.querySelectorAll('.portfolio-item').forEach(item => {
@@ -38,11 +35,20 @@ document.addEventListener('DOMContentLoaded', function () {
       const img = item.querySelector('img');
       const title = item.querySelector('h3')?.textContent || 'Project';
       const desc = item.querySelector('p')?.textContent || 'No description available.';
+      const project = item.dataset.project;
 
       modalImg.src = img.src;
       modalImg.alt = img.alt;
       modalTitle.textContent = title;
       modalDesc.textContent = desc;
+
+      // Set project-specific links
+      const projectLinks = {
+        eastcoastpets: 'https://eastcoastpets.example.com',
+        riffs: 'https://riffs.example.com',
+      };
+      modalLink.href = projectLinks[project] || '#';
+      modalLink.style.display = projectLinks[project] ? 'inline-block' : 'none';
 
       modal.classList.add('show');
       document.body.style.overflow = 'hidden';
@@ -65,39 +71,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Contact form handling
   const contactForm = document.getElementById('contact-form');
-  const formSuccess = document.querySelector('.form-success');
-  const formError = document.querySelector('.form-error');
+  const formMessage = document.getElementById('form-message');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+    contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const submitBtn = contactForm.querySelector('.submit-btn');
-      const spinner = submitBtn.querySelector('.fa-spinner') || document.createElement('i');
-      if (!submitBtn.querySelector('.fa-spinner')) {
-        spinner.className = 'fas fa-spinner';
-        submitBtn.appendChild(spinner);
-      }
+      const submitBtn = contactForm.querySelector('.cta-button');
+      const spinner = submitBtn.querySelector('.fa-spinner');
 
       submitBtn.disabled = true;
-      submitBtn.classList.add('loading');
+      spinner.style.display = 'inline-block';
 
-      // Simulate form submission
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('loading');
-        spinner.remove();
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData,
+        });
 
-        // Random success/failure for demo
-        if (Math.random() > 0.3) {
-          formSuccess.style.display = 'block';
-          formError.style.display = 'none';
+        const result = await response.json();
+
+        if (result.success) {
+          formMessage.textContent = 'Thank you! Your inquiry has been sent successfully.';
+          formMessage.className = 'form-message form-success';
+          formMessage.style.display = 'block';
           contactForm.reset();
         } else {
-          formError.style.display = 'block';
-          formSuccess.style.display = 'none';
+          throw new Error(result.message || 'Form submission failed.');
         }
-      }, 1500);
+      } catch (error) {
+        formMessage.textContent = 'Sorry, something went wrong. Please try again or email us directly.';
+        formMessage.className = 'form-message form-error';
+        formMessage.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        spinner.style.display = 'none';
+      }
     });
   }
 
