@@ -317,25 +317,10 @@ header {
   left: 100%;
 }
 
-.cta-button.secondary {
-  background: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  box-shadow: none;
-}
-
 .cta-button:hover:not(:disabled) {
   background: var(--primary-hover);
   transform: translateY(-3px);
   box-shadow: 0 5px 14px var(--shadow-color);
-}
-
-.cta-button.secondary:hover:not(:disabled) {
-  background: var(--secondary-color);
-  border-color: var(--secondary-color);
-  color: var(--button-text);
-  box-shadow: 0 3px 10px var(--shadow-color);
-  transform: translateY(-3px);
 }
 
 .cta-button:disabled {
@@ -793,21 +778,84 @@ footer p {
 }
 
 /* ==========================================================================
-   Final Touches
+   Final Touches – ONLY NEW ADDITIONS BELOW
    ========================================================================== */
-.cta-button,
-a.cta-button,
-button.cta-button {
-  text-decoration: none !important;
+
+/* Make portfolio images fully clickable (desktop + mobile double-tap) */
+.portfolio-item {
+  position: relative;
+  display: block;
+}
+
+.portfolio-link {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+.portfolio-item:hover {
+  cursor: pointer;
+}
+
+/* Mobile double-tap support */
+@media (pointer: coarse) {
+  .portfolio-link {
+    pointer-events: auto;
+  }
+}
+
+/* Contact Info Block – Clean & Professional */
+.contact-info {
+  text-align: center;
+  margin: 2rem 0 1.5rem;
+  padding: 1.5rem;
+  background: rgba(46, 46, 46, 0.4);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.contact-info p {
+  margin: 0.75rem 0;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.contact-info a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+  color: var(--primary-hover);
+}
+
+/* Footer Contact Links */
+.footer-contact {
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+.footer-contact p {
+  margin: 0.5rem 0;
+}
+
+.footer-contact a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
 }
 
 .email-link {
-  text-decoration: underline;
   color: var(--primary-color);
-  transition: color 0.3s ease;
+  text-decoration: underline;
 }
 
 .email-link:hover {
-  text-decoration: none;
   color: var(--primary-hover);
 }

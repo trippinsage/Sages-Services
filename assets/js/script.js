@@ -1,19 +1,27 @@
+/**
+ * Sages Services – Main JavaScript
+ * Clean, accessible, and professional functionality
+ * Handles: page load animation, mobile menu, and contact form submission
+ */
+
 document.addEventListener('DOMContentLoaded', function () {
-  // Page load fade-in
+  'use strict';
+
+  // Page fade-in animation
   document.body.classList.add('loaded');
 
-  // Mobile menu toggle
+  // Mobile Navigation Toggle
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
 
   if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', !expanded);
+    navToggle.addEventListener('click', function () {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
       navLinks.classList.toggle('open');
     });
 
-    // Close menu when clicking a link
+    // Close menu when a link is clicked
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
@@ -22,106 +30,45 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Portfolio modal
-  const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modal-img');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDesc = document.getElementById('modal-description');
-  const modalLink = document.getElementById('modal-link');
-  const closeModal = document.querySelector('.close-modal');
-
-  document.querySelectorAll('.portfolio-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const title = item.querySelector('h3')?.textContent || 'Project';
-      const desc = item.querySelector('p')?.textContent || 'No description available.';
-      const project = item.dataset.project;
-
-      modalImg.src = img.src;
-      modalImg.alt = img.alt;
-      modalTitle.textContent = title;
-      modalDesc.textContent = desc;
-
-      // Set project-specific links
-      const projectLinks = {
-        eastcoastpets: 'https://eastcoastpets.example.com',
-        riffs: 'https://riffs.example.com',
-      };
-      modalLink.href = projectLinks[project] || '#';
-      modalLink.style.display = projectLinks[project] ? 'inline-block' : 'none';
-
-      modal.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  if (closeModal) {
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    });
-  }
-
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // Contact form handling
+  // Contact Form Submission
   const contactForm = document.getElementById('contact-form');
   const formMessage = document.getElementById('form-message');
 
-  if (contactForm) {
+  if (contactForm && formMessage) {
     contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const submitBtn = contactForm.querySelector('.cta-button');
-      const spinner = submitBtn.querySelector('.fa-spinner');
+      const submitBtn = this.querySelector('.cta-button');
+      const originalHTML = submitBtn.innerHTML;
 
+      // Disable button and show loading state
       submitBtn.disabled = true;
-      spinner.style.display = 'inline-block';
+      submitBtn.innerHTML = '<span>Sending...</span>';
 
       try {
-        const formData = new FormData(contactForm);
+        const formData = new FormData(this);
         const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          body: formData,
+          body: formData
         });
 
         const result = await response.json();
 
         if (result.success) {
-          formMessage.textContent = 'Thank you! Your inquiry has been sent successfully.';
+          formMessage.textContent = 'Thank you! Your message has been sent successfully.';
           formMessage.className = 'form-message form-success';
-          formMessage.style.display = 'block';
           contactForm.reset();
         } else {
-          throw new Error(result.message || 'Form submission failed.');
+          throw new Error(result.message || 'Submission failed');
         }
       } catch (error) {
-        formMessage.textContent = 'Sorry, something went wrong. Please try again or email us directly.';
+        formMessage.textContent = 'Something went wrong. Please try again or call 709-277-6986.';
         formMessage.className = 'form-message form-error';
-        formMessage.style.display = 'block';
       } finally {
+        formMessage.style.display = 'block';
         submitBtn.disabled = false;
-        spinner.style.display = 'none';
+        submitBtn.innerHTML = originalHTML;
       }
     });
   }
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href !== '#') {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  });
 });
