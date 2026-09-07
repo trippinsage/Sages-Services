@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com; img-src 'self' data: https://www.google-analytics.com; style-src 'self'; script-src 'self' https://www.googletagmanager.com">
   <title>Page Not Found | Sages Services</title>
   <meta name="robots" content="noindex,follow">
   <meta name="theme-color" content="#B85C3D">
@@ -13,9 +13,14 @@
   <link rel="icon" href="/assets/brand/icon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260623">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260907">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <script src="/assets/js/analytics.js?v=20260907"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0L9CV3XEL"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <main class="legal-page" id="main-content">
     <div class="container legal-shell">
       <a class="brand" href="/"><img src="/assets/brand/logo.svg" width="390" height="72" alt="Sages Services"></a>
@@ -25,5 +30,6 @@
       <a class="button" href="/">Go to the home page</a>
     </div>
   </main>
+  <script src="/assets/js/site.js?v=20260907" defer></script>
 </body>
 </html>

@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; img-src 'self' data:; style-src 'self'; script-src 'self'">
-  <title>Newfoundland Web Design &amp; Custom Software | Sages Services</title>
-  <meta name="description" content="Newfoundland web design and custom software by Sages Services. View recent work for Riff's, RPM Automotive, and East Coast Pets.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; connect-src 'self' https://api.web3forms.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com; form-action 'self' https://api.web3forms.com; img-src 'self' data: https://www.google-analytics.com; style-src 'self'; script-src 'self' https://www.googletagmanager.com">
+  <title>Web Design, Software &amp; Remote Operations Tools | Sages Services</title>
+  <meta name="description" content="Sages Services creates professional websites, custom software, and remote operations tools that help Canadian businesses and communities grow, connect, and work with confidence.">
   <meta name="author" content="Sages Services">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="theme-color" content="#B85C3D">
@@ -20,25 +20,29 @@
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="assets/brand/brand-banner-site.jpg" as="image" type="image/jpeg" fetchpriority="high">
-  <link rel="stylesheet" href="assets/css/site.css?v=20260623">
+  <link rel="stylesheet" href="assets/css/site.css?v=20260907">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <script src="assets/js/analytics.js?v=20260907"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0L9CV3XEL"></script>
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_CA">
   <meta property="og:site_name" content="Sages Services">
-  <meta property="og:title" content="Web design and custom software | Sages Services">
-  <meta property="og:description" content="Websites and software that help businesses attract customers and save time. See our recent work across Newfoundland.">
+  <meta property="og:title" content="Web design, software, and remote operations tools | Sages Services">
+  <meta property="og:description" content="Professional websites, custom software, and remote operations systems that help Canadian teams grow, connect, and work with confidence.">
   <meta property="og:url" content="https://sages.services/">
   <meta property="og:image" content="https://sages.services/assets/brand/social-share.jpg">
   <meta property="og:image:secure_url" content="https://sages.services/assets/brand/social-share.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Sages Services custom websites and business software">
+  <meta property="og:image:alt" content="Sages Services websites, software, and remote operations tools">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Web design and custom software | Sages Services">
-  <meta name="twitter:description" content="Websites and software that help businesses attract customers and save time.">
+  <meta name="twitter:title" content="Web design, software, and remote operations tools | Sages Services">
+  <meta name="twitter:description" content="Professional websites, custom software, and remote operations systems that help Canadian teams grow, connect, and work with confidence.">
   <meta name="twitter:image" content="https://sages.services/assets/brand/social-share.jpg">
-  <meta name="twitter:image:alt" content="Sages Services custom websites and business software">
+  <meta name="twitter:image:alt" content="Sages Services websites, software, and remote operations tools">
 
   <script type="application/ld+json">
   {
@@ -49,6 +53,7 @@
         "@id": "https://sages.services/#organization",
         "name": "Sages Services",
         "url": "https://sages.services/",
+        "foundingDate": "2024",
         "logo": {
           "@type": "ImageObject",
           "url": "https://sages.services/assets/brand/icon-512.png",
@@ -56,7 +61,7 @@
           "height": 512
         },
         "image": "https://sages.services/assets/brand/social-share.jpg",
-        "description": "Sages Services builds custom websites and business software that help businesses increase sales and save time.",
+        "description": "Sages Services builds professional websites, custom software, and remote operations systems for businesses and critical environments.",
         "email": "contact@sages.services",
         "address": {
           "@type": "PostalAddress",
@@ -87,7 +92,7 @@
         "@type": "WebPage",
         "@id": "https://sages.services/#webpage",
         "url": "https://sages.services/",
-        "name": "Newfoundland Web Design and Custom Software | Sages Services",
+        "name": "Web Design, Software and Remote Operations Tools | Sages Services",
         "isPartOf": {"@id": "https://sages.services/#website"},
         "about": {"@id": "https://sages.services/#organization"},
         "mainEntity": {"@id": "https://sages.services/#recent-work"},
@@ -112,6 +117,15 @@
         "@id": "https://sages.services/#business-software",
         "name": "Custom Business Software Development",
         "serviceType": "Business software development",
+        "provider": {"@id": "https://sages.services/#organization"},
+        "areaServed": {"@type": "Country", "name": "Canada"}
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sages.services/#remote-operations",
+        "name": "Remote Observation and Operations Systems",
+        "serviceType": "Remote communications, environmental monitoring, and data analysis",
+        "description": "Operational systems for remote communications, satellite downlink and uplink, aerospace and air traffic communications, relay infrastructure, environmental monitoring, and data analysis.",
         "provider": {"@id": "https://sages.services/#organization"},
         "areaServed": {"@type": "Country", "name": "Canada"}
       },
@@ -176,14 +190,13 @@
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span></span><span></span><span></span>
-        <span class="sr-only" data-menu-label>Open navigation</span>
+        <span class="sr-only" data-menu-label>Open menu</span>
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
         <a href="#services">Services</a>
         <a href="#work">Work</a>
         <a href="#approach">Process</a>
-        <a href="#about">About</a>
-        <a class="button button-small" href="#contact">Discuss a project</a>
+        <a class="button button-small" href="#contact">Start a project</a>
       </nav>
     </div>
   </header>
@@ -192,40 +205,33 @@
     <section class="hero" id="top">
       <div class="hero-art" aria-hidden="true"></div>
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Web design and custom software</p>
-          <h1>Websites and software built to grow your business.</h1>
-          <p class="hero-intro">Sages Services builds professional websites that bring in customers and custom software that makes everyday work easier.</p>
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">Web, software, and operations support</p>
+          <h1>Your work, made easier to manage.</h1>
+          <p class="hero-intro">We turn complicated needs into practical tools, clear information, and smoother day-to-day operations.</p>
           <div class="button-row">
-            <a class="button" href="#contact">Discuss your project</a>
+            <a class="button" href="#contact">Start a project</a>
             <a class="text-link" href="#work">View our recent work</a>
           </div>
         </div>
-        <div class="hero-note">
-          <p>Based in Marystown</p>
-          <strong>Working with businesses across Canada</strong>
-        </div>
       </div>
     </section>
 
-    <section class="section intro-section" aria-labelledby="intro-heading">
-      <div class="container intro-grid">
-        <p class="section-label">Better results</p>
-        <div>
-          <h2 id="intro-heading">Make your business easier to find, choose, and run.</h2>
-          <p class="large-copy">A clear website helps customers take action. The right software removes repetitive work. We build both without adding more complexity.</p>
-        </div>
+    <section class="canada-banner" aria-label="Canadian ownership">
+      <div class="container canada-banner-inner" data-reveal>
+        <span class="canada-leaf" aria-hidden="true">🍁</span>
+        <p><strong>Fully Canadian-owned and operated.</strong> Direct support from a Canadian team.</p>
       </div>
     </section>
 
-    <section class="section services-section" id="services" aria-labelledby="services-heading">
+    <section class="section" id="services" aria-labelledby="services-heading">
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">What we build</p>
-          <h2 id="services-heading">What can we build for your business?</h2>
+          <h2 id="services-heading">Tools that fit the way you work.</h2>
         </div>
         <div class="service-grid">
-          <article class="service-card">
+          <article class="service-card" data-reveal>
             <span class="service-number">01</span>
             <div>
               <h3>Custom websites</h3>
@@ -238,7 +244,7 @@
               </ul>
             </div>
           </article>
-          <article class="service-card">
+          <article class="service-card" data-reveal>
             <span class="service-number">02</span>
             <div>
               <h3>Business software</h3>
@@ -251,13 +257,19 @@
               </ul>
             </div>
           </article>
-        </div>
-        <div class="capability-row" role="list" aria-label="Additional capabilities">
-          <span role="listitem">Online stores</span>
-          <span role="listitem">Booking systems</span>
-          <span role="listitem">SEO</span>
-          <span role="listitem">Accessibility</span>
-          <span role="listitem">Maintenance</span>
+          <article class="service-card" data-reveal>
+            <span class="service-number">03</span>
+            <div>
+              <h3>Remote operations systems</h3>
+              <p>Connect communications infrastructure, field hardware, and software so your team can monitor remote environments and make informed decisions.</p>
+              <ul class="check-list">
+                <li>Mining, marine, aerospace, and air traffic operations</li>
+                <li>Satellite downlink, uplink, and remote communications</li>
+                <li>Relay systems, hardware setup, and telemetry</li>
+                <li>Environmental monitoring and data analysis</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -273,38 +285,41 @@
         </div>
 
         <div class="work-grid">
-          <article class="work-card">
+          <article class="work-card" data-reveal>
             <a class="work-image-link" href="https://rpmautomotive.repair" target="_blank" rel="noopener external" aria-label="Visit the RPM Automotive Repair website in a new tab">
               <img src="assets/brand/work/rpm.webp" width="640" height="640" loading="lazy" decoding="async" alt="RPM Automotive Repair logo">
+              <span class="work-image-cta" aria-hidden="true">View project</span>
             </a>
             <div class="work-card-body">
               <p class="work-type">Automotive services</p>
               <h3>RPM Automotive Repair</h3>
-              <p>A service-focused website that makes locations, tires, undercoating, contact details, and customer information easy to find.</p>
+              <p>For RPM, we built a clear service hub that helps drivers find locations, tire services, undercoating details, and a direct way to get in touch.</p>
               <a class="work-link" href="https://rpmautomotive.repair" target="_blank" rel="noopener external" aria-label="Visit RPM Automotive in a new tab">Visit RPM Automotive</a>
             </div>
           </article>
 
-          <article class="work-card">
+          <article class="work-card" data-reveal>
             <a class="work-image-link" href="https://riffs.ca" target="_blank" rel="noopener external" aria-label="Visit the Riff's website in a new tab">
               <img src="assets/brand/work/riffs.webp" width="960" height="960" loading="lazy" decoding="async" alt="Riff's logo">
+              <span class="work-image-cta" aria-hidden="true">View project</span>
             </a>
             <div class="work-card-body">
               <p class="work-type">Multi-location retail</p>
               <h3>Riff’s</h3>
-              <p>A retail website built to highlight current promotions and help customers browse departments, locations, and company information.</p>
+              <p>For Riff’s, we created a flexible retail site that brings promotions, departments, locations, and company information together in one easy-to-browse place.</p>
               <a class="work-link" href="https://riffs.ca" target="_blank" rel="noopener external" aria-label="Visit Riff's in a new tab">Visit Riff’s</a>
             </div>
           </article>
 
-          <article class="work-card">
+          <article class="work-card" data-reveal>
             <a class="work-image-link" href="https://eastcoastpets.ca" target="_blank" rel="noopener external" aria-label="Visit the East Coast Pets website in a new tab">
               <img src="assets/brand/work/ecp.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="East Coast Pets logo">
+              <span class="work-image-cta" aria-hidden="true">View project</span>
             </a>
             <div class="work-card-body">
               <p class="work-type">Local pet store</p>
               <h3>East Coast Pets</h3>
-              <p>A bold local website for live animals, pet supplies, services, featured brands, directions, and direct customer contact.</p>
+              <p>For East Coast Pets, we shaped a welcoming local site that makes it simple to explore pets, supplies, services, brands, directions, and store details.</p>
               <a class="work-link" href="https://eastcoastpets.ca" target="_blank" rel="noopener external" aria-label="Visit East Coast Pets in a new tab">Visit East Coast Pets</a>
             </div>
           </article>
@@ -315,23 +330,27 @@
     <section class="section outcome-section" aria-labelledby="outcome-heading">
       <div class="container outcome-grid">
         <div class="outcome-copy">
-          <p class="eyebrow eyebrow-light">What you can expect</p>
-          <h2 id="outcome-heading">Clear advice. Reliable work. No unnecessary extras.</h2>
-          <p>You will know what we recommend, what it costs, and what happens next. We focus on work that solves a real problem and supports your sales or daily operations.</p>
-          <a class="text-link text-link-light" href="#contact">Tell us what you need</a>
+          <p class="eyebrow eyebrow-light">What guides our work</p>
+          <h2 id="outcome-heading">Modern tools. Practical results.</h2>
+          <p>Founded in 2024, Sages Services helps rural communities and operations move forward with modern, effective tools. Every project matters when it creates lasting value.</p>
+          <a class="text-link text-link-light" href="#contact">Plan your next step</a>
         </div>
         <div class="value-list">
           <article>
             <span>01</span>
-            <div><h3>Built around your goals</h3><p>Every recommendation must support sales, customer service, or daily operations.</p></div>
+            <div><h3>Accountability</h3><p>We communicate clearly, follow through, and take responsibility for the work.</p></div>
           </article>
           <article>
             <span>02</span>
-            <div><h3>Easy to use</h3><p>Your customers and staff should understand what to do without extra explanation.</p></div>
+            <div><h3>Innovation</h3><p>We use practical, modern tools to find better ways forward.</p></div>
           </article>
           <article>
             <span>03</span>
-            <div><h3>Ready to grow</h3><p>Clean, dependable code makes future updates easier and more affordable.</p></div>
+            <div><h3>Continuity</h3><p>We build dependable systems that support your work today and tomorrow.</p></div>
+          </article>
+          <article>
+            <span>04</span>
+            <div><h3>Leadership</h3><p>We bring clarity, initiative, and direction to complex projects.</p></div>
           </article>
         </div>
       </div>
@@ -344,7 +363,7 @@
           <h2 id="process-heading">A simple process with clear next steps.</h2>
         </div>
         <ol class="process-list">
-          <li><span>01</span><h3>Talk</h3><p>Tell us what is not working, what you want to improve, and what your budget allows.</p></li>
+          <li><span>01</span><h3>Talk</h3><p>Share what you want to achieve and where you want to go next.</p></li>
           <li><span>02</span><h3>Plan</h3><p>We recommend a clear scope, price, and schedule before any work begins.</p></li>
           <li><span>03</span><h3>Build</h3><p>You review the work at agreed stages while we design, develop, and test it.</p></li>
           <li><span>04</span><h3>Launch</h3><p>We handle final testing, help with launch, and remain available for support.</p></li>
@@ -352,23 +371,12 @@
       </div>
     </section>
 
-    <section class="section about-section" id="about" aria-labelledby="about-heading">
-      <div class="container about-grid">
-        <div class="about-mark" aria-hidden="true"><img src="assets/brand/logo-mark.svg" width="64" height="64" alt=""></div>
-        <div>
-          <p class="eyebrow">About Sages Services</p>
-          <h2 id="about-heading">Based in Newfoundland. Ready to work with you.</h2>
-          <p class="large-copy">Sages Services is based in Marystown, Newfoundland and Labrador. We work with businesses across Canada and keep every project direct, organized, and easy to understand.</p>
-        </div>
-      </div>
-    </section>
-
     <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
       <div class="container contact-grid">
         <div>
-          <p class="eyebrow">Start a conversation</p>
-          <h2 id="contact-heading">Tell us what you want to build.</h2>
-          <p>Share your goals, timing, and budget range. We will review the details and reply with practical next steps for your website or software project.</p>
+          <p class="eyebrow">Ready to move forward?</p>
+          <h2 id="contact-heading">Let’s build what comes next.</h2>
+          <p>Share your goals and ideas. We will review the details and reply with a clear next step.</p>
           <a class="email-link" href="mailto:contact@sages.services?subject=Project%20inquiry">contact@sages.services</a>
         </div>
         <form class="contact-form" action="https://api.web3forms.com/submit" method="post" aria-describedby="form-note form-status" data-email-form>
@@ -394,45 +402,8 @@
             <input id="business" name="business" type="text" autocomplete="organization" maxlength="120">
           </div>
           <div class="field-row">
-            <label for="interest">What do you need?</label>
-            <select id="interest" name="interest" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option>Custom website</option>
-              <option>Website redesign</option>
-              <option>Custom software or web app</option>
-              <option>Business automation or integration</option>
-              <option>Ongoing website support</option>
-              <option>Not sure yet</option>
-            </select>
-          </div>
-          <div class="form-field-grid">
-            <div class="field-row">
-              <label for="budget">Estimated budget <span>optional</span></label>
-              <select id="budget" name="budget">
-                <option value="" selected>Choose a range</option>
-                <option>Under $2,500</option>
-                <option>$2,500–$5,000</option>
-                <option>$5,000–$10,000</option>
-                <option>$10,000–$25,000</option>
-                <option>$25,000+</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-            <div class="field-row">
-              <label for="timeline">Desired timeline <span>optional</span></label>
-              <select id="timeline" name="timeline">
-                <option value="" selected>Choose a timeline</option>
-                <option>As soon as possible</option>
-                <option>Within 1–2 months</option>
-                <option>Within 3–6 months</option>
-                <option>More than 6 months</option>
-                <option>Flexible</option>
-              </select>
-            </div>
-          </div>
-          <div class="field-row">
             <label for="message">Project details</label>
-            <textarea id="message" name="message" rows="6" maxlength="2000" placeholder="What should the website or software accomplish? Include any important features, current problems, or deadlines." required></textarea>
+            <textarea id="message" name="message" rows="6" maxlength="2000" placeholder="What would you like to improve or build?" required></textarea>
           </div>
           <label class="consent-row" for="privacy-consent">
             <input id="privacy-consent" name="privacy_consent" type="checkbox" value="Accepted" required>
@@ -450,7 +421,7 @@
     <div class="container footer-grid">
       <div>
         <img src="assets/brand/logo.svg" width="390" height="72" alt="Sages Services">
-        <p>Custom websites and business software for Canadian businesses.</p>
+        <p>Websites, software, and remote operations tools for Canadian businesses and teams.</p>
       </div>
       <div>
         <p class="footer-label">Contact</p>
@@ -469,6 +440,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20260623" defer></script>
+  <script src="assets/js/site.js?v=20260907" defer></script>
 </body>
 </html>
